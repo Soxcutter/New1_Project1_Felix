@@ -1,4 +1,4 @@
-class Map
+class Stars
 {
   float x;
   float y;
@@ -6,7 +6,7 @@ class Map
   float alpha;
   float alphaD =1;
 
-  Map()
+  Stars()
   {
     x =random(0, width);
     y =random(0, height);
@@ -31,14 +31,5 @@ class Map
       z =random(1, 10);
       alphaD=random(1, 2);
     }
-  }
-  void Borders()
-  {
-    strokeWeight(5); 
-    line(600, width, 600, 0); 
-    stroke(100, 20, 20); 
-    line(20, width, 20, 0); 
-    stroke(0); 
-    strokeWeight(0);
   }
 }

@@ -1,25 +1,18 @@
-Map[] stars =new Map[150];
 Ship spaceShip;
 Map map1;
 
 void setup()
 {
   fullScreen();
-  for (int i=0; i<stars.length; i++)
-  {
-    stars[i] =new Map();
-  }
   spaceShip =new Ship();
-}
+  map1 =new Map();
+}  
 
 void draw()
 {
   background(10, 0, 20); 
-  for (int i=0; i<stars.length; i++)
-  {
-    stars[i].show();
-  }
   map1.Borders();
+  map1.starsUpdate();
   spaceShip.showShip();
   spaceShip.Shipmovement();
 }
