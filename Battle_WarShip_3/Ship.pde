@@ -95,21 +95,21 @@ class Ship
     {
       posX=posX-speedShip;
     }
-    //if (posY>height-25)
-    //{
-    //  posY=posY-speedShip;
-    //}
-    //if (posY<0+25)
-    //{
-    //  posY=posY+speedShip;
-    //}
-    //if (posX>460)
-    //{
-    //  posX=posX-speedShip;
-    //}
-    //if (posX<-40)
-    //{
-    //  posX=posX+speedShip;
-    //}
+    if (posY>height-130)
+    {
+      posY=posY-speedShip;
+    }
+    if (posY<-15)
+    {
+      posY=posY+speedShip;
+    }
+    if (posX>220)
+    {
+      posX=posX-speedShip;
+    }
+    if (posX<-40)
+    {
+      posX=posX+speedShip;
+    }
   }
 }

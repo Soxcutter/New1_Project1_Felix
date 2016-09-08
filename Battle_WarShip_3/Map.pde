@@ -1,6 +1,6 @@
 class Map
 {
-  Stars[] stars =new Stars[150];
+  Stars[] stars =new Stars[100];
   Map()
   {
     for (int i=0; i<stars.length; i++)
