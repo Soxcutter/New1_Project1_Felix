@@ -13,7 +13,7 @@ void setup()
   fullScreen();
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
-  box2d.setGravity(0, -100);
+  box2d.setGravity(0, 0);
   box2d.setContinuousPhysics(true);
   spaceShip =new Ship();
   map1 =new Map();
@@ -27,8 +27,9 @@ void draw()
   map1.starsUpdate();
   spaceShip.showShip();
   spaceShip.Shipmovement();
-    spaceShip.update();
-
+  spaceShip.update();
+  spaceShip.ControlsPressed();
+  spaceShip.Draw();
 }
 
 void keyReleased()

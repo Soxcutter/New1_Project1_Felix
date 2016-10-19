@@ -1,3 +1,9 @@
+/*
+Use .max to make max velocety
+and .add to add to current velocety.
+If I add without max ship will eventually go light speed.
+*/
+
 class Ship extends Entity
 {
   PImage imgNormal;
@@ -7,35 +13,39 @@ class Ship extends Entity
   boolean down;
   boolean left;
   boolean right;
+  PVector pos;
+
   Ship()
   {
-    imgNormal =loadImage("Ship_NormalV3.PNG");    
+    super(width/5, height/2, null, "Player", true);
+    imgNormal =loadImage("Ship_NormalV3.PNG");  
     imgUp =loadImage("Ship_upV3.PNG");    
     imgDown =loadImage("Ship_downV3.PNG");
+    super._img=imgNormal;
     super.CreateBody(BodyType.DYNAMIC);
   }
   void update()
   {
-    PVector pos = box2d.getBodyPixelCoordPVector(_body);
-    float a = _body.getAngle();
+    pos = box2d.getBodyPixelCoordPVector(super._body);
+    float a = super._body.getAngle();
   }
   void showShip()
   {
-    if (down==true && up==false)
+    if (down && !up)
     {
-      image(imgDown, pos.x, posY, 220, 150);
+      super._img= imgDown;
     }
-    if (up==true && down==false)
+    if (up && !down)
     {
-      image(imgUp, posX, posY, 220, 150);
+      super._img= imgUp;
     }
-    if (up ==false && down ==false)
+    if (!up && !down)
     {
-      image(imgNormal, posX, posY, 220, 150);
+      super._img= imgNormal;
     }    
-    if (up ==true && down ==true)
+    if (up && down)
     {
-      image(imgNormal, posX, posY, 220, 150);
+      super._img= imgNormal;
     }
   }
   void ControlsRelease()
@@ -57,8 +67,9 @@ class Ship extends Entity
       left=false;
     }
   }
-  void Shipmovement()
-  {    
+
+  void ControlsPressed()
+  {
     if (keyPressed)
     {
       if (key=='s')
@@ -78,21 +89,26 @@ class Ship extends Entity
         left=true;
       }
     }
+  }
+
+
+  void Shipmovement()
+  {
     if (down)
     {
-      posY= posY+speedShip;
+      pos.y= pos.y+20;
     }
     if (up)
     {
-      posY= posY-speedShip;
+      pos.y= pos.y-20;
     }
     if (right)
     {
-      posX=posX+speedShip;
+      pos.x=pos.x+20;
     }
     if (left)
     {
-      posX=posX-speedShip;
+      pos.x=pos.x-20;
     }
   }
 }
