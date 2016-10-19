@@ -1,8 +1,5 @@
-class Ship
+class Ship extends Entity
 {
-  float posX;
-  float posY;
-  float speedShip;
   PImage imgNormal;
   PImage imgDown;
   PImage imgUp;
@@ -14,17 +11,19 @@ class Ship
   {
     imgNormal =loadImage("Ship_NormalV3.PNG");    
     imgUp =loadImage("Ship_upV3.PNG");    
-    imgDown =loadImage("Ship_downV3.PNG");    
-
-    posX=60;
-    posY=50;
-    speedShip =5;
+    imgDown =loadImage("Ship_downV3.PNG");
+    super.CreateBody(BodyType.DYNAMIC);
+  }
+  void update()
+  {
+    PVector pos = box2d.getBodyPixelCoordPVector(_body);
+    float a = _body.getAngle();
   }
   void showShip()
   {
     if (down==true && up==false)
     {
-      image(imgDown, posX, posY, 220, 150);
+      image(imgDown, pos.x, posY, 220, 150);
     }
     if (up==true && down==false)
     {
@@ -79,37 +78,21 @@ class Ship
         left=true;
       }
     }
-    if (down==true)
+    if (down)
     {
       posY= posY+speedShip;
     }
-    if (up==true)
+    if (up)
     {
       posY= posY-speedShip;
     }
-    if (right==true)
+    if (right)
     {
       posX=posX+speedShip;
     }
-    if (left==true)
+    if (left)
     {
       posX=posX-speedShip;
-    }
-    if (posY>height-130)
-    {
-      posY=posY-speedShip;
-    }
-    if (posY<-15)
-    {
-      posY=posY+speedShip;
-    }
-    if (posX>220)
-    {
-      posX=posX-speedShip;
-    }
-    if (posX<-40)
-    {
-      posX=posX+speedShip;
     }
   }
 }

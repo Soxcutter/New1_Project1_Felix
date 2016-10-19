@@ -1,20 +1,34 @@
+import shiffman.box2d.*;
+import org.jbox2d.collision.shapes.*;
+import org.jbox2d.common.*;
+import org.jbox2d.dynamics.*;
+
+Box2DProcessing box2d;
+
 Ship spaceShip;
 Map map1;
 
 void setup()
 {
   fullScreen();
+  box2d = new Box2DProcessing(this);
+  box2d.createWorld();
+  box2d.setGravity(0, -100);
+  box2d.setContinuousPhysics(true);
   spaceShip =new Ship();
   map1 =new Map();
 }  
 
 void draw()
 {
-  background(10, 0, 20); 
+  background(10, 0, 20);
+  box2d.step();
   map1.Borders();
   map1.starsUpdate();
   spaceShip.showShip();
   spaceShip.Shipmovement();
+    spaceShip.update();
+
 }
 
 void keyReleased()
