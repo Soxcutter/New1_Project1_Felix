@@ -1,18 +1,19 @@
 /*
 Use .max to make max velocety
-and .add to add to current velocety.
-If I add without max ship will eventually go light speed.
-*/
+ and .add to add to current velocety.
+ If I add without max ship will eventually go light speed.
+ */
 
 class Ship extends Entity
 {
   PImage imgNormal;
   PImage imgDown;
   PImage imgUp;
-  boolean up;
-  boolean down;
-  boolean left;
-  boolean right;
+  boolean _up;
+  boolean _down;
+  boolean _left;
+  boolean _right;
+  PVector _moveSpeed;
   PVector pos;
 
   Ship()
@@ -23,6 +24,7 @@ class Ship extends Entity
     imgDown =loadImage("Ship_downV3.PNG");
     super._img=imgNormal;
     super.CreateBody(BodyType.DYNAMIC);
+    _moveSpeed = new PVector(50, 0);
   }
   void update()
   {
@@ -31,19 +33,19 @@ class Ship extends Entity
   }
   void showShip()
   {
-    if (down && !up)
+    if (_down && !_up)
     {
       super._img= imgDown;
     }
-    if (up && !down)
+    if (_up && !_down)
     {
       super._img= imgUp;
     }
-    if (!up && !down)
+    if (!_up && !_down)
     {
       super._img= imgNormal;
     }    
-    if (up && down)
+    if (_up && _down)
     {
       super._img= imgNormal;
     }
@@ -52,19 +54,19 @@ class Ship extends Entity
   {
     if (key=='w')
     {
-      up=false;
+      _up=false;
     }
     if (key=='s')
     {
-      down=false;
+      _down=false;
     }
     if (key=='d')
     {
-      right=false;
+      _right=false;
     }
     if (key=='a')
     {
-      left=false;
+      _left=false;
     }
   }
 
@@ -74,19 +76,19 @@ class Ship extends Entity
     {
       if (key=='s')
       {
-        down=true;
+        _down=true;
       }
       if (key=='w')
       {
-        up=true;
+        _up=true;
       }
       if (key=='d')
       {
-        right=true;
+        _right=true;
       }
       if (key=='a')
       {
-        left=true;
+        _left=true;
       }
     }
   }
@@ -94,21 +96,25 @@ class Ship extends Entity
 
   void Shipmovement()
   {
-    if (down)
+    Vec2 currentVelocity = super._body.getLinearVelocity();
+
+    if (_right)
     {
-      pos.y= pos.y+20;
+      currentVelocity.x = 1 * _moveSpeed.x;
     }
-    if (up)
+    if (_left)
     {
-      pos.y= pos.y-20;
+      currentVelocity.x = -1 * _moveSpeed.x;
     }
-    if (right)
+    if (_up)
     {
-      pos.x=pos.x+20;
+      currentVelocity.y = 1 * _moveSpeed.y;
     }
-    if (left)
+    if (_down)
     {
-      pos.x=pos.x-20;
+      currentVelocity.y = -1 * _moveSpeed.y;
     }
+
+    super._body.setLinearVelocity(currentVelocity);
   }
 }
