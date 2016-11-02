@@ -30,6 +30,7 @@ void draw()
   spaceShip.update();
   spaceShip.ControlsPressed();
   spaceShip.Draw();
+  spaceShip.ShipFire();
 }
 
 void keyReleased()
