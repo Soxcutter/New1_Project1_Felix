@@ -13,6 +13,7 @@ class Ship extends Entity
   boolean _down;
   boolean _left;
   boolean _right;
+  boolean _shipFire;
   PVector _moveSpeed;
   PVector pos;
   ArrayList<Box> boxes;
@@ -70,6 +71,10 @@ class Ship extends Entity
     {
       _left=false;
     }
+    if (key==' ')
+    {
+      _shipFire=false;
+    }
   }
 
   void ControlsPressed()
@@ -92,19 +97,23 @@ class Ship extends Entity
       {
         _left=true;
       }
+      if (key==' ')
+      {
+        _shipFire=true;
+      }
     }
   }
 
   void ShipFire()
   {
-    if (mousePressed)
-    {
+    if (_shipFire)
+    {        
       Box p = new Box(20, height/2);
       boxes.add(p);
     }
     for (Box b : boxes)
     {
-      Vec2 wind = new Vec2(200000, 0);
+      Vec2 wind = new Vec2(20000, 0);
       b.applyForce(wind);
     }
     for (Box b : boxes)

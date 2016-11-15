@@ -12,7 +12,7 @@ void setup()
 {
   fullScreen();
   box2d = new Box2DProcessing(this);
-  box2d.createWorld();
+  box2d.createWorld();  
   box2d.setGravity(0, 0);
   box2d.setContinuousPhysics(true);
   spaceShip =new Ship();
