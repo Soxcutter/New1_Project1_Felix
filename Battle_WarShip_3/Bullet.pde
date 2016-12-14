@@ -1,4 +1,5 @@
-class Box {
+class Box 
+{
 
   Body body;
   float w;
@@ -18,16 +19,17 @@ class Box {
     makeBody(new Vec2(x, y), w, h);
   }
 
-  void killBody()
+  void KillBody()
   {
     box2d.destroyBody(body);
   }
 
   boolean done()
   {
-    Vec2 pos = box2d.getBodyPixelCoord(body);  
-    if (pos.y > width+10) {
-      killBody();
+    Vec2 pos = box2d.getBodyPixelCoord(body);
+    if (pos.y > width+10)
+    {
+      KillBody();
       return true;
     }
     return false;

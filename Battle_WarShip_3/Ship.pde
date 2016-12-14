@@ -26,7 +26,7 @@ class Ship extends Entity
     imgDown =loadImage("Ship_downV3.PNG");
     super._img=imgNormal;
     super.CreateBody(BodyType.DYNAMIC);
-    _moveSpeed = new PVector(50, 50);
+    _moveSpeed = new PVector(110, 110);
     boxes = new ArrayList<Box>();
   }
   void update()
@@ -113,7 +113,7 @@ class Ship extends Entity
     }
     for (Box b : boxes)
     {
-      Vec2 wind = new Vec2(20000, 0);
+      Vec2 wind = new Vec2(2000000000, 0);
       b.applyForce(wind);
     }
     for (Box b : boxes)
@@ -137,23 +137,39 @@ class Ship extends Entity
   void Shipmovement()
   {
     Vec2 currentVelocity = super._body.getLinearVelocity();
+    //Acceleration
+    if (_right)
+    {
+      currentVelocity.x = 1 * _moveSpeed.x;
+    }
+    if (_left)
+    {
+      currentVelocity.x = -1 * _moveSpeed.x;
+    }
+    if (_up)
+    {
+      currentVelocity.y = 1 * _moveSpeed.y;
+    }
+    if (_down)
+    {
+      currentVelocity.y = -1 * _moveSpeed.y;
+    }
 
-    //if (_right)
-    //{
-    //  currentVelocity.x = 1 * _moveSpeed.x;
-    //}
-    //if (_left)
-    //{
-    //  currentVelocity.x = -1 * _moveSpeed.x;
-    //}
-    //if (_up)
-    //{
-    //  currentVelocity.y = 1 * _moveSpeed.y;
-    //}
-    //if (_down)
-    //{
-    //  currentVelocity.y = -1 * _moveSpeed.y;
-    //}
+    //Decceleration
+    if (_right == false)
+    {
+      if (_left ==false)
+      {
+        currentVelocity.x= currentVelocity.x/1.067;
+      }
+    }
+    if (_up == false)
+    {
+      if (_down ==false)
+      {
+        currentVelocity.y= currentVelocity.y/1.067;
+      }
+    }
 
     super._body.setLinearVelocity(currentVelocity);
   }

@@ -87,7 +87,7 @@ class Entity
     popMatrix();                 // x,y using the translate function and x,y returned from box2d
   }
   
-  private void CleanUpDeadObject()
+  private void KillBody()
   {
     box2d.destroyBody(_body);
     //This object can now be safely deleted from an ArrayList
